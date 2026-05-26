@@ -2,10 +2,11 @@ from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
 
 
+
 import os
 from dotenv import load_dotenv
 load_dotenv(os.path.expanduser("~/nexaiq/.env"))
-MONGODB_URI = os.getenv("MONGODB_URI", "mongodb+srv://localhost")
+MONGODB_URI = os.getenv("MONGODB_URI")
 
 _client = None
 
