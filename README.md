@@ -67,24 +67,38 @@ Anomaly → LangGraph agents → executive report in 30 seconds
 ---
 
 ## Architecture
-┌──────────────────────────────────────────────────────┐
-│                   NEXAIQ PLATFORM                    │
-├──────────────────────────────────────────────────────┤
-│  React + TypeScript Dashboard  (port 5173)           │
-├────────┬────────┬────────┬────────┬──────────────────┤
-│  Auth  │Ingest  │   ML   │ Alert  │    Query         │
-│  8001  │  8002  │  8003  │  8004  │    8005          │
-├────────┴────────┴────────┴────────┴──────────────────┤
-│  RAG 8007                  Monitoring 8006           │
-├──────────────────────────────────────────────────────┤
-│  Kafka → Airflow DAGs → DBT RAW→CLEAN→MART           │
-├──────────────────────────────────────────────────────┤
-│  LangGraph · ChromaDB · OpenAI · Evidently AI        │
-├──────────────────────────────────────────────────────┤
-│  PostgreSQL · MongoDB Atlas · Azure Blob · MLflow    │
-└──────────────────────────────────────────────────────┘
+## Architecture
 
----
+```mermaid
+graph TD
+    A[React Dashboard<br/>TypeScript · Tailwind] --> B[Auth Service :8001<br/>JWT · RBAC]
+    A --> C[Ingestion Service :8002<br/>Azure Blob · DBT]
+    A --> D[ML Service :8003<br/>AutoML · MLflow]
+    A --> E[Alert Service :8004<br/>Anomaly · GenAI]
+    A --> F[Query Service :8005<br/>Text-to-SQL]
+    A --> G[RAG Service :8007<br/>ChromaDB · GPT]
+
+    C --> H[Apache Kafka<br/>Event Streaming]
+    H --> I[Apache Airflow<br/>DAG Orchestration]
+    I --> J[DBT Models<br/>RAW→CLEAN→MART]
+    I --> D
+    I --> E
+
+    D --> K[MLflow<br/>Experiment Tracking]
+    E --> L[LangGraph Agents<br/>Analyst→Report→Critic→Action]
+    G --> M[ChromaDB<br/>Vector Store]
+
+    B --> N[(PostgreSQL<br/>Operational Data)]
+    C --> O[(Azure Blob Storage<br/>Org-Isolated)]
+    L --> P[(MongoDB Atlas<br/>Logs & Events)]
+
+    Q[Prometheus :8006] --> A
+    Q --> B
+    Q --> C
+    Q --> D
+    Q --> E
+    Q --> F
+``` ---
 
 ## Tech Stack
 
