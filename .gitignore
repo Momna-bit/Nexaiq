@@ -1,0 +1,12 @@
+.env
+*.env
+__pycache__/
+*.pyc
+node_modules/
+.vite/
+dist/
+chroma_db/
+mlflow.db
+mlruns/
+*.log
+.dbt/
