@@ -1,0 +1,131 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexaiq-auth
+  labels:
+    app: nexaiq-auth
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nexaiq-auth
+  template:
+    metadata:
+      labels:
+        app: nexaiq-auth
+    spec:
+      containers:
+      - name: auth-service
+        image: nexaiq/auth-service:latest
+        ports:
+        - containerPort: 8001
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: nexaiq-secrets
+              key: database-url
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: nexaiq-secrets
+              key: secret-key
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8001
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8001
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nexaiq-auth-service
+spec:
+  selector:
+    app: nexaiq-auth
+  ports:
+  - protocol: TCP
+    port: 8001
+    targetPort: 8001
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexaiq-ml
+  labels:
+    app: nexaiq-ml
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nexaiq-ml
+  template:
+    metadata:
+      labels:
+        app: nexaiq-ml
+    spec:
+      containers:
+      - name: ml-service
+        image: nexaiq/ml-service:latest
+        ports:
+        - containerPort: 8003
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "200m"
+          limits:
+            memory: "512Mi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8003
+          initialDelaySeconds: 30
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nexaiq-ml-service
+spec:
+  selector:
+    app: nexaiq-ml
+  ports:
+  - protocol: TCP
+    port: 8003
+    targetPort: 8003
+  type: ClusterIP
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nexaiq-ml-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nexaiq-ml
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70

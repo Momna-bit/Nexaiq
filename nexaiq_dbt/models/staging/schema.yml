@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_raw_data
+    description: "Cleaned and validated raw data from NexaIQ uploads"
+    columns:
+      - name: org_id
+        description: "Organisation ID for multi-tenancy"
+        tests:
+          - not_null
+      - name: dataset_id
+        description: "Unique dataset identifier"
+        tests:
+          - not_null
+      - name: age
+        description: "Age field with nulls filled to 0"
+      - name: salary
+        description: "Salary field with nulls filled to 0"
+      - name: churn
+        description: "Churn label 0 or 1"

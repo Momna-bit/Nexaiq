@@ -1,0 +1,97 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: nexaiq_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: nexaiq123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  auth_service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.auth
+    ports:
+      - "8001:8001"
+    environment:
+      DATABASE_URL: postgresql://postgres:nexaiq123@postgres:5432/nexaiq_db
+      SECRET_KEY: nexaiq-super-secret-key-2025
+    depends_on:
+      - postgres
+
+  ingestion_service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.ingestion
+    ports:
+      - "8002:8002"
+    environment:
+      DATABASE_URL: postgresql://postgres:nexaiq123@postgres:5432/nexaiq_db
+      SECRET_KEY: nexaiq-super-secret-key-2025
+      AZURE_STORAGE_CONNECTION_STRING: ${AZURE_STORAGE_CONNECTION_STRING}
+    depends_on:
+      - postgres
+
+  ml_service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.ml
+    ports:
+      - "8003:8003"
+    environment:
+      DATABASE_URL: postgresql://postgres:nexaiq123@postgres:5432/nexaiq_db
+      SECRET_KEY: nexaiq-super-secret-key-2025
+    depends_on:
+      - postgres
+
+  alert_service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.alert
+    ports:
+      - "8004:8004"
+    environment:
+      SECRET_KEY: nexaiq-super-secret-key-2025
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    depends_on:
+      - postgres
+
+  query_service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.query
+    ports:
+      - "8005:8005"
+    environment:
+      DATABASE_URL: postgresql://postgres:nexaiq123@postgres:5432/nexaiq_db
+      SECRET_KEY: nexaiq-super-secret-key-2025
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    depends_on:
+      - postgres
+
+  monitoring_service:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.monitoring
+    ports:
+      - "8006:8006"
+    depends_on:
+      - auth_service
+      - ml_service
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth_service
+
+volumes:
+  postgres_data:
