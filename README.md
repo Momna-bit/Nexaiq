@@ -67,38 +67,32 @@ Anomaly → LangGraph agents → executive report in 30 seconds
 ---
 
 ## Architecture
-## Architecture
 
 ```mermaid
 graph TD
-    A[React Dashboard<br/>TypeScript · Tailwind] --> B[Auth Service :8001<br/>JWT · RBAC]
-    A --> C[Ingestion Service :8002<br/>Azure Blob · DBT]
-    A --> D[ML Service :8003<br/>AutoML · MLflow]
-    A --> E[Alert Service :8004<br/>Anomaly · GenAI]
-    A --> F[Query Service :8005<br/>Text-to-SQL]
-    A --> G[RAG Service :8007<br/>ChromaDB · GPT]
+    A[React Dashboard] --> B[Auth :8001]
+    A --> C[Ingestion :8002]
+    A --> D[ML :8003]
+    A --> E[Alerts :8004]
+    A --> F[Query :8005]
+    A --> G[RAG :8007]
+    A --> MON[Monitoring :8006]
 
-    C --> H[Apache Kafka<br/>Event Streaming]
-    H --> I[Apache Airflow<br/>DAG Orchestration]
-    I --> J[DBT Models<br/>RAW→CLEAN→MART]
-    I --> D
-    I --> E
+    C --> KAFKA[Apache Kafka]
+    KAFKA --> AIRFLOW[Apache Airflow]
+    AIRFLOW --> DBT[DBT RAW to CLEAN to MART]
+    AIRFLOW --> D
+    AIRFLOW --> E
 
-    D --> K[MLflow<br/>Experiment Tracking]
-    E --> L[LangGraph Agents<br/>Analyst→Report→Critic→Action]
-    G --> M[ChromaDB<br/>Vector Store]
+    D --> MLFLOW[MLflow]
+    E --> AGENTS[LangGraph Agents]
+    G --> CHROMA[ChromaDB]
 
-    B --> N[(PostgreSQL<br/>Operational Data)]
-    C --> O[(Azure Blob Storage<br/>Org-Isolated)]
-    L --> P[(MongoDB Atlas<br/>Logs & Events)]
-
-    Q[Prometheus :8006] --> A
-    Q --> B
-    Q --> C
-    Q --> D
-    Q --> E
-    Q --> F
-``` ---
+    B --> PG[(PostgreSQL)]
+    C --> BLOB[(Azure Blob)]
+    AGENTS --> MONGO[(MongoDB Atlas)]
+```
+ ---
 
 ## Tech Stack
 
