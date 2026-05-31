@@ -50,17 +50,27 @@ Mid-market companies (50–500 employees) have real business data but no afforda
 
 ---
 
-## ⚡ Pipeline Overview
+## ⚡ Live Pipeline — Animated
 
-```
-CSV Upload → Azure Blob → Kafka Event → Airflow DAG → DBT Transform
-    → AutoML Training → Anomaly Detection → GPT Alert → LangGraph Agents
-                    ⏱️ Under 5 minutes. Zero human intervention.
-```
+<!-- Animated pipeline SVG — hosted in repo -->
+<div align="center">
+<img src="./pipeline.svg" width="100%" alt="NexaIQ Animated Pipeline"/>
+</div>
+
+---
+
+## 📊 Platform Stats
+
+<div align="center">
+<img src="./stats.svg" width="100%" alt="NexaIQ Stats"/>
+</div>
 
 ---
 
 ## 🏗️ Architecture
+
+<details>
+<summary><b>🔍 Click to expand full architecture</b></summary>
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
@@ -75,6 +85,7 @@ CSV Upload → Azure Blob → Kafka Event → Airflow DAG → DBT Transform
                            │
 ┌──────────────────────────▼───────────────────────────────────┐
 │   Apache Kafka (4 topics) ──────► Apache Airflow DAGs         │
+│   file.uploaded │ pipeline.completed │ model.trained          │
 └──────────────────────────┬───────────────────────────────────┘
                            │
 ┌──────────────────────────▼───────────────────────────────────┐
@@ -86,73 +97,98 @@ CSV Upload → Azure Blob → Kafka Event → Airflow DAG → DBT Transform
 └──────────────────────────────────────────────────────────────┘
 ```
 
+</details>
+
 ---
 
-## 🚀 How It Works
+## 🚀 How It Works — Step by Step
 
-### 01 — Secure Ingestion
+<details>
+<summary><b>01 — Secure Ingestion (Azure Blob + DBT)</b></summary>
+
 ```python
 POST /ingest/upload
 # CSV → Azure Blob (org-isolated container)
-# Kafka fires: file.uploaded
+# Kafka fires: file.uploaded event
 # Airflow DAG triggers automatically
 # DBT: RAW → CLEAN → MART
 ```
+</details>
 
-### 02 — AutoML Training
+<details>
+<summary><b>02 — AutoML Training (MLflow)</b></summary>
+
 ```python
 # 4 models train simultaneously
 XGBoost · LightGBM · RandomForest · LogisticRegression
 # Best model auto-selected by AUC score
 # All 61+ runs logged → http://localhost:5000
 ```
+</details>
 
-### 03 — Anomaly Detection
+<details>
+<summary><b>03 — Anomaly Detection (Z-Score + IQR)</b></summary>
+
 ```python
-# Z-Score + IQR on every column
-# Detects: revenue spikes, churn shifts, inventory drops
+# Dual-method detection on every column
+# Flags: revenue spikes, churn shifts, inventory drops
 # Instant — fires the moment data lands
 ```
+</details>
 
-### 04 — GPT Executive Alert
+<details>
+<summary><b>04 — GPT Executive Alert</b></summary>
+
 ```
 "Revenue in Q4 is 2.65 standard deviations above the mean,
 suggesting an unusual revenue spike. Investigation recommended."
 — Written by GPT-3.5, no analyst needed
 ```
+</details>
 
-### 05 — Text-to-SQL
+<details>
+<summary><b>05 — Text-to-SQL Natural Language Query</b></summary>
+
 ```
 User:   "Why did revenue drop last month?"
 GPT:    SELECT region, SUM(revenue) FROM mart_sales WHERE...
 Result: Structured table — zero SQL knowledge needed
 ```
+</details>
 
-### 06 — Autonomous Agents
+<details>
+<summary><b>06 — LangGraph Autonomous Agents</b></summary>
+
 ```
-Analyst Agent    → finds root cause
+Analyst Agent    → finds root cause in data
 Report Writer    → drafts executive summary
 Critic Agent     → validates (threshold: 8/10)
-Action Agent     → fires alerts
+Action Agent     → fires alerts and notifications
 Total: < 30 seconds. Zero human intervention.
 ```
+</details>
 
 ---
 
 ## 📊 MLflow Experiment Tracking
 
 ```bash
-# Starts automatically with platform
 # Access at: http://localhost:5000
+# 61+ experiment runs tracked automatically
 ```
 
-**61+ experiment runs** tracked across XGBoost, LightGBM, RandomForest, LogisticRegression
+<details>
+<summary><b>📈 How to compare models in MLflow</b></summary>
 
-**Compare models:**
 1. Open `http://localhost:5000`
-2. Select experiment → click multiple runs → **Compare**
-3. View side-by-side accuracy, AUC, F1 score charts
-4. Best model auto-registered in Model Registry
+2. Click experiment `nexaiq-{org_id}`
+3. Select multiple runs → click **Compare**
+4. View side-by-side accuracy, AUC, F1 score charts
+5. Best model auto-registered in Model Registry
+
+**Models tracked:** XGBoost · LightGBM · RandomForest · LogisticRegression
+
+</details>
 
 ---
 
@@ -174,6 +210,9 @@ Total: < 30 seconds. Zero human intervention.
 ---
 
 ## 🗂️ Project Structure
+
+<details>
+<summary><b>📁 Click to expand project structure</b></summary>
 
 ```
 nexaiq/
@@ -197,10 +236,14 @@ nexaiq/
 ├── docker-compose.yml       # Local dev environment
 └── .env.example             # Environment template
 ```
+</details>
 
 ---
 
 ## ⚙️ Local Setup
+
+<details>
+<summary><b>🚀 Click to expand setup instructions</b></summary>
 
 ```bash
 # 1. Clone
@@ -211,7 +254,7 @@ cd Nexaiq
 cp .env.example .env
 # Add your API keys to .env
 
-# 3. Kill existing ports (if needed)
+# 3. Kill existing ports (Windows)
 for port in 8001 8002 8003 8004 8005 8006 8007 5000; do
   pid=$(netstat -ano | grep ":$port " | grep LISTENING | awk '{print $5}' | head -1)
   if [ ! -z "$pid" ]; then taskkill //F //PID $pid 2>/dev/null; fi
@@ -220,7 +263,7 @@ done
 # 4. Start all services
 bash start.sh
 
-# 5. Start monitoring (manual)
+# 5. Start monitoring
 cd monitoring && uvicorn main:app --port 8006 &
 
 # 6. Start frontend
@@ -228,48 +271,58 @@ cd frontend && npm install && npm run dev
 ```
 
 **Service URLs:**
-```
-Auth         → http://127.0.0.1:8001
-Ingestion    → http://127.0.0.1:8002
-ML           → http://127.0.0.1:8003
-Alerts       → http://127.0.0.1:8004
-Query        → http://127.0.0.1:8005
-Monitoring   → http://127.0.0.1:8006
-RAG          → http://127.0.0.1:8007
-MLflow UI    → http://127.0.0.1:5000
-Frontend     → http://localhost:5173
-```
+| Service | URL |
+|---------|-----|
+| Auth | http://127.0.0.1:8001 |
+| Ingestion | http://127.0.0.1:8002 |
+| ML | http://127.0.0.1:8003 |
+| Alerts | http://127.0.0.1:8004 |
+| Query | http://127.0.0.1:8005 |
+| Monitoring | http://127.0.0.1:8006 |
+| RAG | http://127.0.0.1:8007 |
+| MLflow UI | http://127.0.0.1:5000 |
+| Frontend | http://localhost:5173 |
+
+</details>
 
 ---
 
-## 🐳 Docker
+## 🐳 Docker & Kubernetes
+
+<details>
+<summary><b>🐳 Docker</b></summary>
 
 ```bash
 docker-compose up --build
 ```
+</details>
 
----
-
-## ☸️ Kubernetes
+<details>
+<summary><b>☸️ Kubernetes</b></summary>
 
 ```bash
 kubectl apply -f k8s/
 kubectl get pods
 kubectl get hpa   # scales to 5 replicas at 70% CPU
 ```
+</details>
 
 ---
 
 ## 📡 API Reference
 
+<details>
+<summary><b>📡 Click to expand all endpoints</b></summary>
+
 ```
-Auth :8001     POST /auth/login · GET /auth/me
-Ingest :8002   POST /ingest/upload · GET /ingest/status/{id}
+Auth :8001     POST /auth/login · GET /auth/me · POST /auth/register
+Ingest :8002   POST /ingest/upload · GET /ingest/status/{id} · GET /ingest/datasets
 ML :8003       POST /ml/train · GET /ml/models · GET /ml/runs
-Alerts :8004   GET /alerts · POST /alerts/detect
+Alerts :8004   GET /alerts · POST /alerts/detect · GET /alerts/{id}
 Query :8005    POST /query/ask · GET /query/history
-RAG :8007      POST /rag/upload · POST /rag/ask
+RAG :8007      POST /rag/upload · POST /rag/ask · GET /rag/documents
 ```
+</details>
 
 ---
 
@@ -291,7 +344,7 @@ RAG :8007      POST /rag/upload · POST /rag/ask
 
 - JWT authentication + RBAC (Admin / Analyst / Viewer)
 - Multi-tenant org isolation — every user scoped by `org_id`
-- Azure Blob org-isolated containers
+- Azure Blob org-isolated containers — no cross-tenant access
 - All secrets via `os.getenv()` — never hardcoded
 - `.env` in `.gitignore`
 
