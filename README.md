@@ -1,318 +1,317 @@
-# NexaIQ — B2B AI Decision Intelligence Platform
+<div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.100-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black)](https://reactjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://typescriptlang.org)
-[![Azure](https://img.shields.io/badge/Azure-Blob_Storage-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)](https://azure.microsoft.com)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white)](https://mongodb.com)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-4169E1?style=flat-square&logo=postgresql&logoColor=white)](https://postgresql.org)
-[![MLflow](https://img.shields.io/badge/MLflow-2.7-0194E2?style=flat-square&logo=mlflow&logoColor=white)](https://mlflow.org)
-[![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?style=flat-square&logo=docker&logoColor=white)](https://docker.com)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=NexaIQ&fontSize=80&fontColor=C6FF00&animation=twinkling&fontAlignY=40&desc=Autonomous%20Data%20Intelligence%20Platform&descAlignY=62&descSize=22&descColor=ffffff" width="100%"/>
 
-**Palantir for mid-market companies. Upload your data. Get autonomous AI-powered decisions.**
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=18&pause=1000&color=C6FF00&center=true&vCenter=true&width=700&lines=Upload+a+CSV.+Get+AI+decisions+in+under+5+minutes.;7+Microservices+%C2%B7+4+AI+Agents+%C2%B7+Production+B2B+SaaS;Palantir+for+Mid-Market+Companies;Zero+Data+Team+Required." alt="Typing SVG"/>
 
-[Live Demo](#) · [Architecture](#architecture) · [Tech Stack](#tech-stack) · [Quick Start](#quick-start) · [Built By](#built-by)
+<br/>
 
----
+[![Portfolio](https://img.shields.io/badge/📊%20Case%20Study-Portfolio-C6FF00?style=for-the-badge&logoColor=black)](https://momna-bit.github.io/nexaiq-portfolio)
+[![Dashboard](https://img.shields.io/badge/🖥️%20Live%20Dashboard-Open%20App-00CFFF?style=for-the-badge)](https://momna-bit.github.io/Nexaiq)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Momna%20Ali-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/momna-ali)
 
-## The Problem NexaIQ Solves
+<br/>
 
-Most mid-market companies are sitting on enormous amounts of business data — sales records, customer behaviour, revenue trends, operational metrics — but have no practical way to act on it in real time.
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![Kafka](https://img.shields.io/badge/Kafka-231F20?style=flat-square&logo=apachekafka&logoColor=white)
+![Airflow](https://img.shields.io/badge/Airflow-017CEE?style=flat-square&logo=apacheairflow&logoColor=white)
+![DBT](https://img.shields.io/badge/DBT-FF694B?style=flat-square&logo=dbt&logoColor=white)
+![MLflow](https://img.shields.io/badge/MLflow-0194E2?style=flat-square&logo=mlflow&logoColor=white)
+![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=flat-square&logo=openai&logoColor=white)
 
-Hiring a full data team costs hundreds of thousands of dollars per year. Enterprise tools like Palantir or Databricks cost millions in licensing fees. Small BI tools like Power BI or Tableau show charts, but they do not think for you — someone still has to interpret the data, build the models, detect the anomalies, and write the reports.
-
-**NexaIQ eliminates that gap.**
-
-It is a fully autonomous B2B SaaS platform that acts as an entire data team in software. Upload a CSV. The platform does everything else — ingestion, transformation, ML training, anomaly detection, executive reporting, and intelligent Q&A — automatically, with zero manual intervention.
-
----
-
-## What is NexaIQ?
-
-NexaIQ is a **production-grade, multi-tenant B2B SaaS platform** built for companies that want enterprise-grade AI decision intelligence without the enterprise price tag.
-
-At its core, NexaIQ is a **data-to-decision engine**. It takes raw business data and produces:
-
-- **Trained ML models** that predict outcomes such as churn, revenue, and risk
-- **Anomaly alerts** written in plain English by an AI — not just numbers in a table
-- **Autonomous agent reports** — 4 AI agents investigate anomalies and deliver an executive briefing without any human involvement
-- **Natural language answers** to business questions — no SQL knowledge required
-- **Document Q&A** — ask questions about your internal reports and get grounded AI answers
-
-The platform is built on a **microservices architecture** with 7 independent services, an event-driven pipeline using **Apache Kafka**, **Apache Airflow** DAG orchestration, **DBT** data transformations, **MLflow** experiment tracking, **ChromaDB** vector store, and **LangGraph** autonomous agents — all monitored by **Prometheus + Grafana**.
+</div>
 
 ---
 
-## How It Works
-STEP 1 — INGEST
-User uploads CSV via React dashboard
-→ Saved to Azure Blob Storage in org-isolated container
-→ Kafka fires file.uploaded event
-→ Airflow DAG triggered automatically
-STEP 2 — TRANSFORM (5-task Airflow DAG)
-Task 1: Validate input data
-Task 2: DBT transforms RAW → CLEAN → MART
-Task 3: AutoML trains XGBoost, LightGBM, RandomForest
-MLflow logs all runs and selects best model
-Task 4: Anomaly detection runs on all numeric columns
-GPT-3.5 writes executive alert in plain English
-Task 5: Report dispatched and logged to MongoDB
-STEP 3 — DECIDE
-Plain English question → SQL → chart in dashboard
-PDF upload → ChromaDB embedding → grounded GPT answer
-Anomaly → LangGraph agents → executive report in 30 seconds
+## 🎯 What is NexaIQ?
+
+> **"Palantir for mid-market companies."**
+>
+> NexaIQ is a production-grade B2B SaaS platform that turns raw business data into autonomous AI decisions — no data team required. Upload a CSV. The platform handles everything else automatically in under 5 minutes.
+
+Mid-market companies (50–500 employees) have real business data but no affordable way to act on it. A full data team costs $500K+/year. Tools like Palantir cost millions. Power BI shows charts but doesn't think for you. **NexaIQ fixes that.**
 
 ---
 
-## Architecture
+## 🔗 Quick Links
 
-```mermaid
-graph TD
-    A[React Dashboard] --> B[Auth :8001]
-    A --> C[Ingestion :8002]
-    A --> D[ML :8003]
-    A --> E[Alerts :8004]
-    A --> F[Query :8005]
-    A --> G[RAG :8007]
-    A --> MON[Monitoring :8006]
+| Resource | Link |
+|----------|------|
+| 🏆 **Portfolio & Case Study** | [momna-bit.github.io/nexaiq-portfolio](https://momna-bit.github.io/nexaiq-portfolio) |
+| 🖥️ **Live Dashboard** | [momna-bit.github.io/Nexaiq](https://momna-bit.github.io/Nexaiq) |
+| 📊 **MLflow Tracking** | `http://localhost:5000` (run locally) |
+| 💼 **LinkedIn** | [linkedin.com/in/momna-ali](https://www.linkedin.com/in/momna-ali) |
+| 📧 **Contact** | [alimomna87@gmail.com](mailto:alimomna87@gmail.com) |
 
-    C --> KAFKA[Apache Kafka]
-    KAFKA --> AIRFLOW[Apache Airflow]
-    AIRFLOW --> DBT[DBT RAW to CLEAN to MART]
-    AIRFLOW --> D
-    AIRFLOW --> E
+**Dashboard Login:** `test@nexaiq.com` / `test123`
 
-    D --> MLFLOW[MLflow]
-    E --> AGENTS[LangGraph Agents]
-    G --> CHROMA[ChromaDB]
+---
 
-    B --> PG[(PostgreSQL)]
-    C --> BLOB[(Azure Blob)]
-    AGENTS --> MONGO[(MongoDB Atlas)]
+## ⚡ Pipeline Overview
+
 ```
- ---
-
-## Tech Stack
-
-| Layer | Technologies |
-|---|---|
-| **Backend** | FastAPI · Python 3.11 · PostgreSQL · MongoDB Atlas |
-| **Data Pipeline** | Apache Airflow · DBT · Apache Kafka |
-| **ML / MLOps** | XGBoost · LightGBM · RandomForest · MLflow · Evidently AI |
-| **GenAI & Agents** | OpenAI API · LangGraph · ChromaDB · RAG Pipeline |
-| **Frontend** | React 18 · TypeScript · Tailwind CSS · Recharts · Zustand |
-| **Cloud** | Azure Blob Storage · Azure Container Apps |
-| **Infrastructure** | Docker · Kubernetes · GitHub Actions |
-| **Monitoring** | Prometheus · Grafana |
+CSV Upload → Azure Blob → Kafka Event → Airflow DAG → DBT Transform
+    → AutoML Training → Anomaly Detection → GPT Alert → LangGraph Agents
+                    ⏱️ Under 5 minutes. Zero human intervention.
+```
 
 ---
 
-## Services
+## 🏗️ Architecture
 
-| Service | Port | Description |
-|---|---|---|
-| Auth | 8001 | JWT auth · Multi-tenant RBAC · Org-scoped isolation |
-| Ingestion | 8002 | CSV upload · Azure Blob · Org containers · Pipeline trigger |
-| ML | 8003 | AutoML 4 models · MLflow tracking · Model registry |
-| Alerts | 8004 | Z-score and IQR detection · GPT executive alerts |
-| Query | 8005 | Natural language to SQL · Structured results |
-| Monitoring | 8006 | Prometheus metrics · Service health · Response times |
-| RAG | 8007 | ChromaDB vector store · Document Q&A · Source attribution |
-| MLflow UI | 5000 | Experiment tracking · Model comparison |
-
----
-
-## Feature Deep Dive
-
-### Multi-Tenant SaaS Architecture
-Every organisation gets completely isolated data scoped by org_id at the database level. One company can never access another company's data. Role-based access control enforces Admin, Analyst, and Viewer permissions using JWT tokens with embedded claims.
-
-### Event-Driven Data Pipeline
-When a user uploads a CSV, the ingestion service saves it to Azure Blob Storage in an org-specific container, then fires a Kafka event. A consumer reads that event and triggers the Airflow DAG automatically — no polling, no cron jobs, no manual steps.
-
-### Apache Airflow DAG Orchestration
-The pipeline is a 5-task DAG with explicit dependency management. Tasks 3 and 4 both depend on Task 2. The scheduler runs on a configurable interval and connects to all live services using authenticated API calls.
-
-### DBT Data Models
-Raw data transforms through two DBT models — a staging model that cleans and validates, and a mart model that aggregates business metrics. Both have automated not_null tests and auto-generated lineage documentation.
-
-### AutoML Engine with MLflow
-Trains XGBoost, LightGBM, RandomForest, and LogisticRegression simultaneously. Automatically detects classification versus regression. Every run logged to MLflow with parameters, metrics, and artifacts. Best model selected by AUC-ROC or R².
-
-### Anomaly Detection and GenAI Alerts
-Z-score and IQR anomaly detection run on every dataset. Anomalies are passed to GPT-3.5 which writes a plain English executive alert referencing specific column names, values, and z-scores.
-
-### Text-to-SQL Interface
-Plain English question → GPT generates org-scoped SQL → safety validation blocks dangerous statements → results returned as structured JSON and rendered as charts.
-
-### RAG Pipeline with ChromaDB
-Documents split into 500-word overlapping chunks, embedded into ChromaDB with cosine similarity. Top 3 relevant chunks retrieved per question. GPT answers only from provided context with source attribution and relevance scores.
-
-### LangGraph Autonomous Agents
-Four agents share typed state: Analyst (root cause) → Report Writer (executive summary) → Critic (quality score 8/10) → Action (alerts, MongoDB log, notifications). Full workflow under 30 seconds.
-
-### Prometheus Monitoring
-Tracks request counts, error counts, ML training durations, anomaly counts, upload counts, and service uptime across all 7 services. Health endpoint returns structured JSON with response times for every service.
+```
+┌──────────────────────────────────────────────────────────────┐
+│               React Dashboard (GitHub Pages)                  │
+└──────────────────────────┬───────────────────────────────────┘
+                           │
+┌──────────────────────────▼───────────────────────────────────┐
+│                  7 FastAPI Microservices                       │
+│  Auth:8001  │  Ingestion:8002  │  ML:8003  │  Alerts:8004    │
+│  Query:8005 │  Monitoring:8006 │  RAG:8007                   │
+└──────────────────────────┬───────────────────────────────────┘
+                           │
+┌──────────────────────────▼───────────────────────────────────┐
+│   Apache Kafka (4 topics) ──────► Apache Airflow DAGs         │
+└──────────────────────────┬───────────────────────────────────┘
+                           │
+┌──────────────────────────▼───────────────────────────────────┐
+│  PostgreSQL │ MongoDB Atlas │ Azure Blob │ ChromaDB │ MLflow  │
+└──────────────────────────┬───────────────────────────────────┘
+                           │
+┌──────────────────────────▼───────────────────────────────────┐
+│  OpenAI GPT-3.5 │ LangGraph 4 Agents │ RAG Pipeline          │
+└──────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## Project Structure
-nexaiq/
-├── backend/
-│   ├── auth_service/          # JWT + RBAC (port 8001)
-│   ├── ingestion_service/     # Azure Blob + DBT pipeline (port 8002)
-│   ├── ml_service/            # AutoML + MLflow (port 8003)
-│   ├── alert_service/         # Anomaly + GenAI alerts (port 8004)
-│   └── query_service/         # Text-to-SQL (port 8005)
-├── airflow_dags/              # DAG + Task classes + scheduler
-├── agents/                    # LangGraph 4-agent workflow
-├── docker/                    # Dockerfiles for all services
-├── frontend/                  # React + TypeScript dashboard
-├── k8s/                       # Kubernetes deployments + HPA
-├── kafka/                     # Producer + consumer + topics
-├── mongodb/                   # Atlas client + log service
-├── monitoring/                # Prometheus metrics (port 8006)
-├── nexaiq_dbt/                # DBT staging + mart models
-├── rag/                       # ChromaDB + RAG pipeline (port 8007)
-├── docker-compose.yml
-├── start.sh
-└── .env.example
+## 🚀 How It Works
+
+### 01 — Secure Ingestion
+```python
+POST /ingest/upload
+# CSV → Azure Blob (org-isolated container)
+# Kafka fires: file.uploaded
+# Airflow DAG triggers automatically
+# DBT: RAW → CLEAN → MART
+```
+
+### 02 — AutoML Training
+```python
+# 4 models train simultaneously
+XGBoost · LightGBM · RandomForest · LogisticRegression
+# Best model auto-selected by AUC score
+# All 61+ runs logged → http://localhost:5000
+```
+
+### 03 — Anomaly Detection
+```python
+# Z-Score + IQR on every column
+# Detects: revenue spikes, churn shifts, inventory drops
+# Instant — fires the moment data lands
+```
+
+### 04 — GPT Executive Alert
+```
+"Revenue in Q4 is 2.65 standard deviations above the mean,
+suggesting an unusual revenue spike. Investigation recommended."
+— Written by GPT-3.5, no analyst needed
+```
+
+### 05 — Text-to-SQL
+```
+User:   "Why did revenue drop last month?"
+GPT:    SELECT region, SUM(revenue) FROM mart_sales WHERE...
+Result: Structured table — zero SQL knowledge needed
+```
+
+### 06 — Autonomous Agents
+```
+Analyst Agent    → finds root cause
+Report Writer    → drafts executive summary
+Critic Agent     → validates (threshold: 8/10)
+Action Agent     → fires alerts
+Total: < 30 seconds. Zero human intervention.
+```
 
 ---
 
-## Quick Start
+## 📊 MLflow Experiment Tracking
 
 ```bash
+# Starts automatically with platform
+# Access at: http://localhost:5000
+```
+
+**61+ experiment runs** tracked across XGBoost, LightGBM, RandomForest, LogisticRegression
+
+**Compare models:**
+1. Open `http://localhost:5000`
+2. Select experiment → click multiple runs → **Compare**
+3. View side-by-side accuracy, AUC, F1 score charts
+4. Best model auto-registered in Model Registry
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Technologies |
+|----------|-------------|
+| **Languages** | Python 3.11, TypeScript |
+| **Backend** | FastAPI, SQLAlchemy, Pydantic |
+| **Frontend** | React 18, TypeScript, Tailwind CSS, Recharts, Zustand |
+| **Data Pipeline** | Apache Airflow, Apache Kafka (4 topics), DBT |
+| **ML / MLOps** | XGBoost, LightGBM, RandomForest, MLflow, Evidently AI |
+| **AI / GenAI** | OpenAI GPT-3.5, LangGraph, ChromaDB, RAG Pipeline |
+| **Databases** | PostgreSQL, MongoDB Atlas, ChromaDB |
+| **Cloud** | Azure Blob Storage, Azure Container Apps |
+| **Infra** | Docker, Kubernetes HPA (5 replicas), GitHub Actions |
+| **Monitoring** | Prometheus, Grafana, Liveness/Readiness Probes |
+
+---
+
+## 🗂️ Project Structure
+
+```
+nexaiq/
+├── backend/
+│   ├── auth_service/        # Port 8001 — JWT + RBAC + Multi-tenant
+│   ├── ingestion_service/   # Port 8002 — Azure Blob + DBT pipeline
+│   ├── ml_service/          # Port 8003 — AutoML + MLflow tracking
+│   ├── alert_service/       # Port 8004 — Anomaly detection + GPT alerts
+│   └── query_service/       # Port 8005 — Text-to-SQL
+├── airflow_dags/            # 5-task DAG pipeline
+├── agents/                  # LangGraph 4-agent workflow
+├── docker/                  # Dockerfiles for all services
+├── frontend/                # React 18 + TypeScript dashboard
+├── k8s/                     # Kubernetes + HPA configs
+├── kafka/                   # Kafka producer + consumer
+├── mongodb/                 # MongoDB Atlas client
+├── monitoring/              # Port 8006 — Prometheus
+├── nexaiq_dbt/              # DBT models + tests (PASS=2, WARN=0)
+├── rag/                     # Port 8007 — ChromaDB + RAG
+├── start.sh                 # Start all services
+├── docker-compose.yml       # Local dev environment
+└── .env.example             # Environment template
+```
+
+---
+
+## ⚙️ Local Setup
+
+```bash
+# 1. Clone
 git clone https://github.com/Momna-bit/Nexaiq.git
 cd Nexaiq
+
+# 2. Environment
 cp .env.example .env
+# Add your API keys to .env
 
-pip install fastapi uvicorn sqlalchemy psycopg2-binary python-jose bcrypt \
-  azure-storage-blob openai scikit-learn xgboost lightgbm mlflow pandas \
-  pymongo chromadb langchain langgraph prometheus-client dbt-core \
-  dbt-postgres kafka-python scipy python-dotenv
+# 3. Kill existing ports (if needed)
+for port in 8001 8002 8003 8004 8005 8006 8007 5000; do
+  pid=$(netstat -ano | grep ":$port " | grep LISTENING | awk '{print $5}' | head -1)
+  if [ ! -z "$pid" ]; then taskkill //F //PID $pid 2>/dev/null; fi
+done
 
-psql -U postgres -c "CREATE DATABASE nexaiq_db;"
-
+# 4. Start all services
 bash start.sh
 
+# 5. Start monitoring (manual)
+cd monitoring && uvicorn main:app --port 8006 &
+
+# 6. Start frontend
 cd frontend && npm install && npm run dev
 ```
 
-Open `http://localhost:5173` and register your organisation.
-
----
-
-## API Reference
-
-### Auth (8001)
-POST /auth/register   Register organisation and admin user
-POST /auth/login      Authenticate and get JWT token
-GET  /auth/me         Get current user profile
-
-### ML (8003)
-POST /train           Run AutoML on dataset
-GET  /models          List trained models with accuracy scores
-
-### Alerts (8004)
-POST /detect-anomalies    Detect anomalies and generate AI alert
-POST /ml-insight          Generate business summary of ML results
-
-### Query (8005)
-POST /ask             Natural language to SQL to results
-GET  /schema          List available tables
-
-### Monitoring (8006)
-GET  /health          Service health and response times
-GET  /metrics         Prometheus metrics
-
-### RAG (8007)
-POST /ingest          Add document to ChromaDB
-POST /ask             Ask question grounded in documents
-GET  /stats           Vector store statistics
-
----
-
-## Environment Variables
-
-```bash
-DATABASE_URL=postgresql://postgres:password@localhost:5432/nexaiq_db
-SECRET_KEY=your-secret-key-here
-AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=...
-AZURE_STORAGE_CONTAINER=datasets
-OPENAI_API_KEY=sk-...
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/
+**Service URLs:**
+```
+Auth         → http://127.0.0.1:8001
+Ingestion    → http://127.0.0.1:8002
+ML           → http://127.0.0.1:8003
+Alerts       → http://127.0.0.1:8004
+Query        → http://127.0.0.1:8005
+Monitoring   → http://127.0.0.1:8006
+RAG          → http://127.0.0.1:8007
+MLflow UI    → http://127.0.0.1:5000
+Frontend     → http://localhost:5173
 ```
 
 ---
 
-## Deployment
+## 🐳 Docker
 
-### Docker Compose
 ```bash
 docker-compose up --build
 ```
 
-### Kubernetes
-```bash
-kubectl apply -f k8s/secrets.yml
-kubectl apply -f k8s/deployment.yml
-```
+---
 
-2 replicas per service · HPA scales to 5 at 70% CPU · Liveness probes included
+## ☸️ Kubernetes
 
-### Azure
 ```bash
-az containerapp up --name nexaiq \
-  --resource-group nexaiq-rg \
-  --image nexaiq/auth-service:latest \
-  --target-port 8001
+kubectl apply -f k8s/
+kubectl get pods
+kubectl get hpa   # scales to 5 replicas at 70% CPU
 ```
 
 ---
 
-## Technical Decisions
+## 📡 API Reference
 
-**Microservices** — each service scales and deploys independently without affecting others.
-
-**Kafka over direct API calls** — decouples upload from pipeline. Events are durable and replayable.
-
-**DBT over raw SQL** — versioned, tested, documented transformations with lineage graphs.
-
-**LangGraph** — multi-agent workflows produce measurably higher quality outputs than single prompts.
-
-**ChromaDB cosine similarity** — outperforms Euclidean distance for semantic search on normalised embeddings.
-
-**Polyglot persistence** — PostgreSQL for ACID-compliant operational data, MongoDB for flexible event logs.
+```
+Auth :8001     POST /auth/login · GET /auth/me
+Ingest :8002   POST /ingest/upload · GET /ingest/status/{id}
+ML :8003       POST /ml/train · GET /ml/models · GET /ml/runs
+Alerts :8004   GET /alerts · POST /alerts/detect
+Query :8005    POST /query/ask · GET /query/history
+RAG :8007      POST /rag/upload · POST /rag/ask
+```
 
 ---
 
-## Skills Demonstrated
+## 📋 What This Demonstrates
 
-| Area | Skills |
-|---|---|
-| **Data Engineering** | Airflow · DBT · Kafka · Azure Blob · ETL · RAW→CLEAN→MART |
-| **ML Engineering** | AutoML · XGBoost · LightGBM · MLflow · Evidently AI · anomaly detection |
-| **AI Engineering** | OpenAI API · LangGraph · ChromaDB · RAG · prompt engineering · agents |
-| **Backend** | FastAPI · PostgreSQL · MongoDB · SQLAlchemy · JWT · RBAC · microservices |
-| **Frontend** | React · TypeScript · Tailwind · Recharts · Zustand |
-| **DevOps** | Docker · Kubernetes · GitHub Actions · Prometheus · Grafana |
-| **Cloud** | Azure Blob Storage · Azure Container Apps · MongoDB Atlas |
-
----
-
-## Built By
-
-**Momna Ali** — Data Engineer and ML Engineer
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/momna-ali)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-6d28d9?style=flat-square)](https://momna-bit.github.io)
-[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat-square&logo=github)](https://github.com/Momna-bit)
+| Domain | Skills |
+|--------|--------|
+| **Data Engineering** | Airflow, DBT, Kafka, Azure Blob, ETL, multi-layer warehouse |
+| **ML Engineering** | AutoML, MLflow, model registry, experiment tracking |
+| **AI Engineering** | RAG pipeline, LangGraph agents, vector search, prompt engineering |
+| **Backend Engineering** | 7 microservices, FastAPI, PostgreSQL, MongoDB, JWT, RBAC |
+| **Frontend Engineering** | React 18, TypeScript, enterprise UI design |
+| **DevOps** | Docker, Kubernetes, GitHub Actions, Prometheus, Grafana |
+| **Cloud** | Azure Blob Storage, Azure Container Apps, MongoDB Atlas |
 
 ---
 
-## License
+## 🔐 Security
 
-MIT — see LICENSE for details.
+- JWT authentication + RBAC (Admin / Analyst / Viewer)
+- Multi-tenant org isolation — every user scoped by `org_id`
+- Azure Blob org-isolated containers
+- All secrets via `os.getenv()` — never hardcoded
+- `.env` in `.gitignore`
+
+---
+
+## 👩‍💻 Built By
+
+**Momna Ali** — Data Engineer · ML Engineer · AI Engineer · Data Scientist
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/momna-ali)
+[![Portfolio](https://img.shields.io/badge/Portfolio-NexaIQ-C6FF00?style=for-the-badge)](https://momna-bit.github.io/nexaiq-portfolio)
+[![Dashboard](https://img.shields.io/badge/Dashboard-Live-00CFFF?style=for-the-badge)](https://momna-bit.github.io/Nexaiq)
+[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:alimomna87@gmail.com)
+
+---
+
+<div align="center">
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer&animation=twinkling" width="100%"/>
+
+*⭐ Star this repo if you find it impressive!*
+</div>
