@@ -1,0 +1,103 @@
+<svg width="900" height="140" viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#02030A"/>
+      <stop offset="100%" style="stop-color:#0A0C1A"/>
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="900" height="140" fill="url(#bg)" rx="6"/>
+
+  <!-- Step boxes -->
+  <!-- 1: CSV -->
+  <rect x="12" y="30" width="100" height="50" rx="4" fill="rgba(198,255,0,0.08)" stroke="rgba(198,255,0,0.5)" stroke-width="1.5"/>
+  <text x="62" y="52" text-anchor="middle" font-family="monospace" font-size="9" fill="#C6FF00" letter-spacing="1">CSV UPLOAD</text>
+  <text x="62" y="66" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(198,255,0,0.5)">Azure Blob</text>
+  <!-- dot -->
+  <circle cx="62" cy="30" r="4" fill="#C6FF00" filter="url(#glow)">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Arrow + moving dot -->
+  <line x1="114" y1="55" x2="148" y2="55" stroke="rgba(198,255,0,0.25)" stroke-width="1" stroke-dasharray="3,2"/>
+  <circle cx="114" cy="55" r="3" fill="#C6FF00" filter="url(#glow)">
+    <animate attributeName="cx" values="114;148" dur="1.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.2" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- 2: Kafka -->
+  <rect x="150" y="30" width="100" height="50" rx="4" fill="rgba(0,207,255,0.08)" stroke="rgba(0,207,255,0.5)" stroke-width="1.5"/>
+  <text x="200" y="52" text-anchor="middle" font-family="monospace" font-size="9" fill="#00CFFF" letter-spacing="1">KAFKA EVENT</text>
+  <text x="200" y="66" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(0,207,255,0.5)">4 Topics</text>
+  <circle cx="200" cy="30" r="4" fill="#00CFFF" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.3s"/>
+  </circle>
+
+  <line x1="252" y1="55" x2="286" y2="55" stroke="rgba(0,207,255,0.25)" stroke-width="1" stroke-dasharray="3,2"/>
+  <circle cx="252" cy="55" r="3" fill="#00CFFF" filter="url(#glow)">
+    <animate attributeName="cx" values="252;286" dur="1.8s" repeatCount="indefinite" begin="0.3s"/>
+    <animate attributeName="opacity" values="1;0.2" dur="1.8s" repeatCount="indefinite" begin="0.3s"/>
+  </circle>
+
+  <!-- 3: Airflow -->
+  <rect x="288" y="30" width="100" height="50" rx="4" fill="rgba(139,92,246,0.08)" stroke="rgba(139,92,246,0.5)" stroke-width="1.5"/>
+  <text x="338" y="52" text-anchor="middle" font-family="monospace" font-size="9" fill="#A78BFA" letter-spacing="1">AIRFLOW DAG</text>
+  <text x="338" y="66" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(139,92,246,0.5)">5-Task Pipeline</text>
+  <circle cx="338" cy="30" r="4" fill="#A78BFA" filter="url(#glow)">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" begin="0.6s"/>
+  </circle>
+
+  <line x1="390" y1="55" x2="424" y2="55" stroke="rgba(139,92,246,0.25)" stroke-width="1" stroke-dasharray="3,2"/>
+  <circle cx="390" cy="55" r="3" fill="#A78BFA" filter="url(#glow)">
+    <animate attributeName="cx" values="390;424" dur="1.8s" repeatCount="indefinite" begin="0.6s"/>
+    <animate attributeName="opacity" values="1;0.2" dur="1.8s" repeatCount="indefinite" begin="0.6s"/>
+  </circle>
+
+  <!-- 4: AutoML -->
+  <rect x="426" y="30" width="100" height="50" rx="4" fill="rgba(255,32,32,0.08)" stroke="rgba(255,32,32,0.5)" stroke-width="1.5"/>
+  <text x="476" y="52" text-anchor="middle" font-family="monospace" font-size="9" fill="#FF2020" letter-spacing="1">AUTOML TRAIN</text>
+  <text x="476" y="66" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(255,32,32,0.5)">XGB+LGBM+RF</text>
+  <circle cx="476" cy="30" r="4" fill="#FF2020" filter="url(#glow)">
+    <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" begin="0.9s"/>
+  </circle>
+
+  <line x1="528" y1="55" x2="562" y2="55" stroke="rgba(255,32,32,0.25)" stroke-width="1" stroke-dasharray="3,2"/>
+  <circle cx="528" cy="55" r="3" fill="#FF2020" filter="url(#glow)">
+    <animate attributeName="cx" values="528;562" dur="1.8s" repeatCount="indefinite" begin="0.9s"/>
+    <animate attributeName="opacity" values="1;0.2" dur="1.8s" repeatCount="indefinite" begin="0.9s"/>
+  </circle>
+
+  <!-- 5: Anomaly -->
+  <rect x="564" y="30" width="100" height="50" rx="4" fill="rgba(212,160,23,0.08)" stroke="rgba(212,160,23,0.5)" stroke-width="1.5"/>
+  <text x="614" y="52" text-anchor="middle" font-family="monospace" font-size="9" fill="#D4A017" letter-spacing="1">ANOMALY DETECT</text>
+  <text x="614" y="66" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(212,160,23,0.5)">Z-Score+IQR</text>
+  <circle cx="614" cy="30" r="4" fill="#D4A017" filter="url(#glow)">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite" begin="1.2s"/>
+  </circle>
+
+  <line x1="666" y1="55" x2="700" y2="55" stroke="rgba(212,160,23,0.25)" stroke-width="1" stroke-dasharray="3,2"/>
+  <circle cx="666" cy="55" r="3" fill="#D4A017" filter="url(#glow)">
+    <animate attributeName="cx" values="666;700" dur="1.8s" repeatCount="indefinite" begin="1.2s"/>
+    <animate attributeName="opacity" values="1;0.2" dur="1.8s" repeatCount="indefinite" begin="1.2s"/>
+  </circle>
+
+  <!-- 6: GPT Alert -->
+  <rect x="702" y="30" width="100" height="50" rx="4" fill="rgba(198,255,0,0.12)" stroke="#C6FF00" stroke-width="2"/>
+  <text x="752" y="52" text-anchor="middle" font-family="monospace" font-size="9" fill="#C6FF00" letter-spacing="1" filter="url(#glow)">GPT ALERT</text>
+  <text x="752" y="66" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(198,255,0,0.6)">LangGraph</text>
+  <!-- Pulse on final node -->
+  <rect x="702" y="30" width="100" height="50" rx="4" fill="none" stroke="rgba(198,255,0,0.3)" stroke-width="1">
+    <animate attributeName="stroke-width" values="1;5;1" dur="2s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <circle cx="752" cy="30" r="4" fill="#C6FF00" filter="url(#glow)">
+    <animate attributeName="r" values="4;7;4" dur="1.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.4;1" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Bottom timing label -->
+  <text x="450" y="112" text-anchor="middle" font-family="monospace" font-size="9" fill="rgba(198,255,0,0.45)" letter-spacing="2">
+    ⏱  UNDER 5 MINUTES  ·  ZERO HUMAN INTERVENTION  ·  PRODUCTION GRADE
+    <animate attributeName="opacity" values="0.45;0.9;0.45" dur="3s" repeatCount="indefinite"/>
+  </text>
+</svg>
