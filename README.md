@@ -48,8 +48,6 @@ Mid-market companies (50–500 employees) have real business data but no afforda
 | 💼 **LinkedIn** | [linkedin.com/in/momna-ali](https://www.linkedin.com/in/momna-ali) |
 | 📧 **Contact** | [alimomna87@gmail.com](mailto:alimomna87@gmail.com) |
 
-**Dashboard Login:** `test@nexaiq.com` / `test123`
-
 ---
 
 ## ⚡ Pipeline Overview
